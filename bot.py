@@ -3,15 +3,13 @@ import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 
-# Load .env file
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 
-# Path to your image (local file)
 IMAGE_PATH = "/opt/traceebot/ohwow.gif"
 
 intents = discord.Intents.default()
-intents.message_content = True  # bot needs this to read messages
+intents.message_content = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
@@ -25,7 +23,6 @@ async def on_message(message):
         return
 
     if "oh wow" in message.content.lower():
-        # Upload a local file
         file = discord.File(IMAGE_PATH, filename="ohwow.gif")
         await message.channel.send(file=file)
 
